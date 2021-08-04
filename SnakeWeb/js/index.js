@@ -12,12 +12,7 @@ let startRandom = Math.floor(Math.random()*2);
 let changeDirection = false;
 let direction = "";
 
-let listCoordendas = [[0,0,0,0]];
-let testCoordendas = [0];
-
-let count = 0;
-
-let deb = true;
+let listCoordendas = [['a','a','a','a','a','a']];
 
 function startGame(){
     bodySnake.push(new snakebody(snakeSize, snakeSize, Math.floor(Math.random() * 19) * snakeSize, Math.floor(Math.random() * 19) * snakeSize));
@@ -150,63 +145,22 @@ function snakebody(width, height, x, y) {
 }
 
 function updateBody(){
-    count++;
-    for(let i = 0;i<listCoordendas.length;i++){
-        if(i==0){
-            for(let j = 0;j<listCoordendas[0].length-1;j++){
-                listCoordendas[i][j]=listCoordendas[i][j+1];
-            }
-            listCoordendas[i][listCoordendas[i].length-1]=bodySnake[0].x+'|'+bodySnake[0].y;
-        }else{
-            for(let j = 0;j<listCoordendas[0].length-1;j++){
-                listCoordendas[i][j]=listCoordendas[i][j+1];
-            }
-            listCoordendas[i][3]=listCoordendas[i-1][0];
-        }
-        
+    for(let i = 5;i>0;i--){
+        listCoordendas[0][i]=listCoordendas[0][i-1];
     }
-    /*testCoordendas[0]=bodySnake[0].x+'|'+bodySnake[0].y;
-    for(let i=1;i<testCoordendas.length;i++){
-        testCoordendas[i]=testCoordendas[i-1];
+    listCoordendas[0][0]=bodySnake[0].x+'|'+bodySnake[0].y;
+    for(let i = 1;i<listCoordendas.length;i++){
+        for(let j = 5;j>0;j--){
+            listCoordendas[i][j]=listCoordendas[i][j-1];
+        }
+        listCoordendas[i][0]=listCoordendas[i-1][5];
     }
     for(let i=1;i<bodySnake.length;i++){
-        bodySnake[i].x = testCoordendas[i].split('|')[0];
-        bodySnake[i].y = testCoordendas[i].split('|')[1];
+        bodySnake[i].x = parseInt(listCoordendas[i][0].split('|')[0]);
+        bodySnake[i].y = parseInt(listCoordendas[i][0].split('|')[1]);
         bodySnake[i].ctx = gameContext;
         bodySnake[i].ctx.fillStyle = "#00FF00";
-        bodySnake[i].ctx.fillRect(bodySnake[i].x , bodySnake[i].y , 25 , 25);
-    }*/
-    for(let i=1;i<bodySnake.length;i++){
-        bodySnake[i].x = listCoordendas[i][0].split('|')[0];
-        bodySnake[i].y = listCoordendas[i][0].split('|')[1];
-        bodySnake[i].ctx = gameContext;
-        bodySnake[i].ctx.fillStyle = "#00FF00";
-        bodySnake[i].ctx.fillRect(bodySnake[i].x , bodySnake[i].y , 25 , 25);
-    }
-    if(count%5==0){
-        count = 0;
-        // testCoordendas[0]=bodySnake[0].x+'|'+bodySnake[0].y;
-        // for(let i=1;i<testCoordendas.length;i++){
-        //     testCoordendas[i]=testCoordendas[i-1];
-        // }
-        // for(let i=1;i<bodySnake.length;i++){
-        //     bodySnake[i].x = testCoordendas[i].split('|')[0];
-        //     bodySnake[i].y = testCoordendas[i].split('|')[1];
-        //     bodySnake[i].speedX = 0;
-        //     bodySnake[i].speedY = 0;
-        //     bodySnake[i].ctx = gameContext;
-        //     bodySnake[i].ctx.fillStyle = "#00FF00";
-        //     bodySnake[i].ctx.fillRect(bodySnake[i].x , bodySnake[i].x , 25 , 25);
-        // }
-        if(deb){
-            console.log(listCoordendas);
-            //console.log(testCoordendas);
-            //console.log(bodySnake[1])
-        }
-    }
-    if(deb){
-        //console.log(listCoordendas);
-        //console.log(testCoordendas);
+        bodySnake[i].ctx.fillRect(bodySnake[i].x , bodySnake[i].y ,snakeSize , snakeSize);
     }
 }
 
@@ -216,9 +170,7 @@ function collectApple(){
         myApple.x = (snakeSize/2) + Math.floor(Math.random() * 19) * snakeSize;
         myApple.y = (snakeSize/2) + Math.floor(Math.random() * 19) * snakeSize;
         listCoordendas.push([[0,0,0,0]]);
-        testCoordendas.push(0);
-        //bodySnake.push(new snakebody(snakeSize, snakeSize, bodySnake[0].x,  bodySnake[0].y));
-        bodySnake.push(new snakebody(snakeSize, snakeSize, testCoordendas[1].x,  testCoordendas[1].y));
+        bodySnake.push(new snakebody(snakeSize, snakeSize, 0,  0));
     }
 }
 
@@ -239,7 +191,6 @@ function move(){
     window.addEventListener('keyup',(e) => {
         switch(e.key){
             case 'ArrowLeft':
-                direction = "Left";
                 if(bodySnake[0].y % snakeSize == 0 && !changeDirection){
                     if(bodySnake[0].speedX == 0){
                         bodySnake[0].speedX = -velocity;
@@ -247,10 +198,10 @@ function move(){
                     }
                 }else if(bodySnake[0].speedX == 0){
                     changeDirection = true;
+                    direction = "Left";
                 }
                 break;
             case 'ArrowRight':
-                direction = "Right";
                 if(bodySnake[0].y % snakeSize == 0 && !changeDirection){
                     if(bodySnake[0].speedX == 0){
                         bodySnake[0].speedX = velocity;
@@ -258,10 +209,10 @@ function move(){
                     }
                 }else if(bodySnake[0].speedX == 0){
                     changeDirection = true;
+                    direction = "Right";
                 }
                 break;
             case 'ArrowUp':
-                direction = 'Up';
                 if(bodySnake[0].x % snakeSize == 0 && !changeDirection){
                     if(bodySnake[0].speedY == 0){
                         bodySnake[0].speedX = 0;
@@ -269,10 +220,10 @@ function move(){
                     }
                 }else if(bodySnake[0].speedY == 0){
                     changeDirection = true;
+                    direction = 'Up';
                 }
                 break;
             case 'ArrowDown':
-                direction = 'Down';
                 if(bodySnake[0].x % snakeSize == 0 && !changeDirection){
                     if(bodySnake[0].speedY == 0){
                         bodySnake[0].speedX = 0;
@@ -280,12 +231,8 @@ function move(){
                     }
                 }else if(bodySnake[0].speedY == 0){
                     changeDirection = true;
+                    direction = 'Down';
                 }
-                break;
-            case 'Enter':
-                bodySnake[0].speedX = 0;
-                bodySnake[0].speedY = 0;
-                deb = false;
                 break;
         }
     });
