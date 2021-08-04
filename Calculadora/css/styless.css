@@ -1,0 +1,50 @@
+body{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #060d2f;
+}
+
+button{
+	width: 120px;
+	height: 100px;
+	border-radius: 15px;
+	margin: 5px;
+	border: solid 5px #546ccf;
+	background: #97bbfe;
+	text-decoration-color: black;
+	font-size: 45px;
+	font-family: serif;
+	outline: none;
+}
+
+.igual{
+	border-color: #3a5a01;
+	background: #bcdd7a;
+}
+
+.reiniciar{
+	border-color: #7e0f12;
+	background: #ee6a9c;
+	margin: 5px 5px;
+}
+
+.resultado{
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	background: #BBBBBB;
+	height: 100px;
+	width: 380px;
+	border-radius: 15px;
+	font-size: 30px;
+	margin: 5px 5px;
+}
+
+.row{
+	width: 100%;
+	margin: 0 15px;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+}

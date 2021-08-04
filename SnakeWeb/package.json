@@ -1,0 +1,19 @@
+{
+  "name": "snakeweb",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start2": "node server.js",
+    "dev": "nodemon server.js",
+    "start": "browser-sync start --server --files 'index.html' 'css/styles.css' js/index.js"
+  },
+  "author": "AlexisPA",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^2.0.9"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

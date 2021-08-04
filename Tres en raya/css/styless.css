@@ -1,0 +1,109 @@
+body{
+    background: rgb(25,25,25);
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 275px;
+    height: 275px;
+    margin: auto;
+    margin-top: 75px;
+}
+
+.line{
+    background: rgb(245, 245,245);
+    width: 10px;
+    height: 250px;
+    border-radius: 5px;
+    margin: 25px;
+    z-index: 10;
+}
+
+.horizontal{
+    position: absolute;
+    transform: rotate(90deg);
+    margin: auto;
+}
+
+.lh1{
+    margin-top: 85px;
+}
+
+.lh2{
+    margin-top: -85px;
+}
+
+.vertical{
+    position: absolute;
+    margin: auto;
+}
+
+.lv1{
+    margin-left: 85px;
+}
+
+.lv2{
+    margin-left: -85px;
+}
+
+.content{
+    width: 275px;
+    height: 91px;
+    position: absolute;
+    margin: auto;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.c1{
+    margin-top: -180px;
+}
+
+.c2{
+    margin-top: 0px;
+}
+
+.c3{
+    margin-top: 180px;
+}
+
+.box{
+    width: 85px;
+    height: 85px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1px;
+    color: rgb(25,25,25);
+}
+
+#message{
+    justify-content: center;
+    align-items: center;
+    width: 255px;
+    height: 75px;
+    margin: auto;
+    background: gray;
+    border-radius: 25px;
+    font-size: 45px;
+    display: none;
+}
+
+#button{
+    justify-content: center;
+    align-items: center;
+    width: 255px;
+    height: 75px;
+    margin: auto;
+    background: gray;
+    border-radius: 25px;
+    font-size: 45px;
+    display: none;
+    margin-top: 25px;
+    outline: none;
+}

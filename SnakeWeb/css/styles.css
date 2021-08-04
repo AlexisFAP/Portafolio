@@ -1,0 +1,27 @@
+body{
+    background: rgb(35, 35, 35);
+}
+
+#world{
+    border: solid 1px white;
+    margin: 35px auto;
+    display: flex;
+}
+
+div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1{
+    color: white;
+    margin: 0 20px;
+    
+}
+
+p{
+    color: white;
+    margin: 0 15px;
+    font-size: 25px;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" href="css/styless.css">
+
+	<title>Calculadora</title>
+</head>
+<body>
+	<div>
+		<div class="row">
+			<div id="pantalla" class="resultado"> Resultado </div>
+			<button id="reiniciar" class="reiniciar" onclick="reset2()" >C</button>
+		</div>
+			
+		<div class="row">
+			<button id="7" onclick="button_content('7')">7</button>
+			<button id="8" onclick="button_content('8')">8</button>
+			<button id="9" onclick="button_content('9')">9</button>
+			<button id="/" onclick="operacion('/')">/</button>
+		</div>
+		<div class="row">
+			<button id="4" onclick="button_content('4')">4</button>
+			<button id="5" onclick="button_content('5')">5</button>
+			<button id="6" onclick="button_content('6')">6</button>
+			<button id="X" onclick="operacion('X')">X</button>
+		</div>
+		<div class="row">
+			<button id="1" onclick="button_content('1')">1</button>
+			<button id="2" onclick="button_content('2')">2</button>
+			<button id="3" onclick="button_content('3')">3</button>
+			<button id="." onclick="button_content('.')">.</button>
+		</div>
+		<div class="row">
+			<button id="0" onclick="button_content('0')">0</button>
+			<button id="-" onclick="operacion('-')">-</button>
+			<button id="+" onclick="operacion('+')">+</button>
+			<button id="=" class="igual" onclick="result()">=</button>
+		</div>
+	</div>
+
+
+	<script src="js/index.js"></script>
+
+</body>
+</html>

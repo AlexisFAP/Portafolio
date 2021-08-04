@@ -1,0 +1,35 @@
+body{
+    background: rgb(35, 35, 35);
+}
+
+#screen{
+    width: 500px;
+    height: 500px;
+    border: solid 1px white;
+}
+
+#snake{
+    width: 25px;
+    height: 25px;
+    background: rgb(11, 11, 201);
+    position: relative;
+    left: 1px;
+    top: 1px;
+}
+
+#apple{
+    width: 25px;
+    height: 25px;
+    background: rgb(255, 0, 0);
+    position: relative;
+    left: 1px;
+    top: 1px;
+    border-radius: 50%;
+}
+
+h1{
+    color: white;
+    left: 650px;
+    top: 100px;
+    position: absolute;
+}
