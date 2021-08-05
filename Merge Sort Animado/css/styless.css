@@ -5,3 +5,10 @@ body{
 li{
     outline: none;
 }
+
+button{
+    border-radius: 5%;
+    background: rgb(4, 73, 175);
+    border-color:rgb(1, 33, 82);
+    border-style: none;
+}

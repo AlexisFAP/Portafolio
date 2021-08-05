@@ -1,123 +1,110 @@
-class Nodo{
-    constructor(Data){
-        this.Data = Data;
-        this.PreviousNode = null;
-        this.NextNode = null;
+let test = [1,3,4,8,2];
+
+console.log(test);
+let result1 = mergeSortD(test);
+let result2 = mergeSortA(test);
+
+console.log(result1,'descendiente');
+console.log(result2, 'ascendiente');
+
+//More to Less
+function mergeSortD(list){
+    let result = [];
+    let left = [];
+    let right = [];
+    if (list.length <= 1){
+        return list;
     }
-}
-
-class CircleDoublyLinkedList{
-    constructor(){
-        this.Head = null;
-        this.Tail = null;
-    }
-
-    AddToTail(n){
-        let NewNodo = new Nodo(n);
-
-        if(this.Head == null){
-            this.Head = NewNodo;
-            this.Head.NextNode = NewNodo;
-            NewNodo.PreviousNode = this.Tail;
-            this.Tail = NewNodo;
-        }else{
-            this.Tail.NextNode = NewNodo;
-            NewNodo.NextNode = this.Head;
-            NewNodo.PreviousNode = this.Tail;
-            this.Tail = NewNodo;
-            this.Head.PreviousNode = this.Tail;
+    else{
+        for(let i = 0;i<Math.floor(list.length/2);i++){
+            left.push(list[i]);
         }
-    }
-
-    AddToHead(n){
-        let NewNodo = new Nodo(n);
-
-        if(this.Head == null){
-            this.Tail = NewNodo;
-            this.Tail.PreviousNode = NewNodo;
-            NewNodo.NextNode = this.Head;
-            this.Head = NewNodo;
-        }else{
-            this.Head.PreviousNode = NewNodo;
-            NewNodo.PreviousNode = this.Tail;
-            NewNodo.NextNode = this.Head;
-            this.Head = NewNodo;
-            this.Tail.NextNode = this.Head;
+        for(let i = Math.floor(list.length/2);i<list.length;i++){
+            right.push(list[i]);
         }
-    }
-
-    ShowHeadToTail(){
-        let current = this.Head;
-        do{
-            console.log(current.Data);
-            current = current.NextNode;
-        }while(current != this.Head);
-    }
-
-    ShowTailToHead(){
-        let current = this.Tail;
-        do{
-            console.log(current.Data);
-            current = current.PreviousNode;
-        }while(current != this.Tail);
-    }
-
-    Length(){
-        let n = 0;
-
-        let current = this.Head;
-        do{
-            n+=1;
-            current = current.NextNode;
-        }while(current != this.Head);
-
-        return n;
-    }
-}
-
-function MergeSort(list){
-    let n = list.Length();
-    let list1 = new CircleDoublyLinkedList();
-    let list2 = new CircleDoublyLinkedList();
-    let n1;
-    let n2;
-    if(list.Length()%2 == 1){
-        n1 = Math.trunc(list.Length()/2) + 1;
-        n2 = Math.trunc(list.Length()/2);
         
-    }else{
-        n1 = Math.trunc(list.Length()/2)
-        n2 = Math.trunc(list.Length()/2)
+        left = mergeSortD(left);
+        right = mergeSortD(right);
+        
+        if(left[left.length - 1] >= right[0]){
+            left.push(...right);
+            return left;
+        }
+        
+        result = mergeD(left,right);
+        
+        return result;
     }
-    let cont  = 0;
-    while(list1.Length() < n1){
-        let current = list.Head;
-        do{
-            if(list1.Head == null){
-                list1.AddToHead(current);
-            }else{
-                if(current.Data < list1.Head.Data){
-                    list1.AddToTail(current);
-                }else{
-                    list1.AddToHead(current);
-                }
-            }
-            current = current.NextNode;
-        }while(current != this.Head);
-    }
-    while(list2.Length() < n2){
-
-    }
-    return list1;
 }
 
-let lista = new CircleDoublyLinkedList();
+function mergeD(left,right){
+    let result = [];
+    while(left.length > 0 && right.length > 0){
+        if(left[0] >= right[0]){
+           result.push(left[0]);
+           left.shift();
+        }
+        else{
+            result.push(right[0]);
+            right.shift();
+        }
+    }
+    if(left.length > 0 ){
+        result.push(...left);
+    }
+    if(right.length > 0 ){
+        result.push(...right);
+    }
+    return result;
+}
 
-lista.AddToHead(10);
-lista.AddToHead(15);
-lista.AddToTail(20);
-lista.AddToHead(50);
-lista.AddToHead(35);
-lista.ShowHeadToTail();
-console.log(lista.Length()/2);
-console.loh(MergeSort(lista));
+//Less to More
+function mergeSortA(list){
+    let result = [];
+    let left = [];
+    let right = [];
+    if (list.length <= 1){
+        return list;
+    }
+    else{
+        for(let i = 0;i<Math.floor(list.length/2);i++){
+            left.push(list[i]);
+        }
+        for(let i = Math.floor(list.length/2);i<list.length;i++){
+            right.push(list[i]);
+        }
+        
+        left = mergeSortA(left);
+        right = mergeSortA(right);
+        
+        if(left[left.length - 1] <= right[0]){
+            left.push(...right);
+            return left;
+        }
+        
+        result = mergeA(left,right);
+        
+        return result;
+    }
+}
+
+function mergeA(left,right){
+    let result = [];
+    while(left.length > 0 && right.length > 0){
+        if(left[0] <= right[0]){
+           result.push(left[0]);
+           left.shift();
+        }
+        else{
+            result.push(right[0]);
+            right.shift();
+        }
+    }
+    if(left.length > 0 ){
+        result.push(...left);
+    }
+    if(right.length > 0 ){
+        result.push(...right);
+    }
+    return result;
+}

@@ -1,0 +1,12 @@
+{
+  "name": "merge-sort",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "browser-sync start --server --files 'index.html' 'css/styless.css' 'js/index.js'",
+    "start2": "node server.js"
+  },
+  "author": "AlexisPA",
+  "license": "ISC"
+}
