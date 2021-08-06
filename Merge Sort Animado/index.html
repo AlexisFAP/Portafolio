@@ -3,50 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="css/styless.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
     <title>Merge Sort</title>
 </head>
 <body>
-
-    <button id="menu-button">Menu</button>
+    
+    <div id="menu-button" onclick="showMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+    </div>
 
     <nav id="menu">
         <ul>
             <li>
-                <form action="">
-                    <input type="number" name="AddNode">
-                    <input type="submit" value="Add Node">
+                <form onsubmit="return false">
+                    <input id="addNode" type="number" name="AddNode">
+                    <input id="addNodeSub" type="submit" value="Add Node">
                 </form>
             </li>
             <li>
-                <form action="">
-                    <input type="number" name="DeleteNode">
-                    <input type="submit" value="Delete Node">
+                <form onsubmit="return false"> 
+                    <input id="deleteNode" type="number" name="DeleteNode">
+                    <input id="deleteNodeSub" type="submit" value="Delete Node">
                 </form>
             </li>
             <li>
-                <form action="">
-                    <input type="number" name="ChangeNode">
-                    <input type="number" name="ValueChangeNode">
-                    <input type="submit" value="Change Node">
+                <form onsubmit="return false">
+                    <input id="changeNode" type="number" name="ChangeNode">
+                    <input id="changeNodeValue" type="number" name="ValueChangeNode">
+                    <input id="changeNodeSub" type="submit" value="Change Node">
                 </form>
             </li>
             <li>
-                <button> Descending Merge Sort</button>
+                <button id="ascending"> Ascending Merge Sort</button>
             </li>
             <li>
-                <button> Ascending Merge Sort</button>
+                <button id="descending"> Descending Merge Sort</button>
             </li>
         </ul>
-        <button id="close">X</button>
     </nav>
 
-    
+    <div id="list">
 
-    
+    </div>
 
     <script src="js/index.js"></script>
     

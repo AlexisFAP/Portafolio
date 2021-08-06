@@ -1,14 +1,81 @@
-let test = [1,3,4,8,2];
+let menu = document.getElementById("menu");
+let listShow = document.getElementById("list");
 
-console.log(test);
-let result1 = mergeSortD(test);
-let result2 = mergeSortA(test);
+let addButton = document.getElementById("addNodeSub");
+let addValue = document.getElementById("addNode");
+let deleteButton = document.getElementById("deleteNodeSub");
+let deleteValue = document.getElementById("deleteNode");
+let changeButton= document.getElementById("changeNodeSub");
+let changeValueIn = document.getElementById("changeNode");
+let changeValue = document.getElementById("changeNodeValue");
 
-console.log(result1,'descendiente');
-console.log(result2, 'ascendiente');
+let ascending = document.getElementById("ascending");
+let descenging = document.getElementById("descending");
+let orderType = true;
 
-//More to Less
-function mergeSortD(list){
+let check = true;
+
+let listMerge = [];
+
+listShow.innerHTML = listMerge;
+
+function showMenu(){
+    if (check){
+        menu.style.display = 'flex';
+        check = false;
+    }else{
+        menu.style.display = 'none';
+        check = true;
+    }
+    
+}
+
+
+addButton.addEventListener('click', function() {
+    if(addValue.value != ''){
+        listMerge.push(addValue.value);
+        addValue.value = "";
+        listShow.innerHTML = listMerge;
+    }
+});
+
+deleteButton.addEventListener('click', function() {
+    if(deleteValue.value != ''){
+        const index = listMerge.indexOf(deleteValue.value);
+        if (index > -1) {
+            listMerge.splice(index,1);
+        }
+        deleteValue.value = "";
+        listShow.innerHTML = listMerge;
+    }
+});
+
+changeButton.addEventListener('click', function() {
+    if(changeValue.value != '' && changeValueIn != ''){
+        const index = listMerge.indexOf(changeValueIn.value);
+        if (index !== -1) {
+            listMerge[index] = changeValue.value;
+        }
+        changeValueIn.value = "";
+        changeValue.value = "";
+        listShow.innerHTML = listMerge;
+    }
+});
+
+ascending.onclick = function(){ 
+    orderType = true;
+    let list = mergeSort(listMerge);
+    listShow.innerHTML = list;
+};
+
+descenging.onclick = function(){ 
+    orderType = false;
+    let list = mergeSort(listMerge);
+    listShow.innerHTML = list;
+};
+
+
+function mergeSort(list){
     let result = [];
     let left = [];
     let right = [];
@@ -17,94 +84,66 @@ function mergeSortD(list){
     }
     else{
         for(let i = 0;i<Math.floor(list.length/2);i++){
-            left.push(list[i]);
+            left.push(parseInt(list[i]));
         }
         for(let i = Math.floor(list.length/2);i<list.length;i++){
-            right.push(list[i]);
+            right.push(parseInt(list[i]));
         }
         
-        left = mergeSortD(left);
-        right = mergeSortD(right);
+        left = mergeSort(left);
+        right = mergeSort(right);
         
-        if(left[left.length - 1] >= right[0]){
-            left.push(...right);
-            return left;
+        if(orderType){
+            if(left[left.length - 1] <= right[0]){
+                left.push(...right);
+                return left;
+            }
+        }else{
+            if(left[left.length - 1] >= right[0]){
+                left.push(...right);
+                return left;
+            }
         }
-        
-        result = mergeD(left,right);
+
+        result = merge(left,right);
         
         return result;
     }
 }
 
-function mergeD(left,right){
+function merge(left,right){
     let result = [];
+
     while(left.length > 0 && right.length > 0){
-        if(left[0] >= right[0]){
-           result.push(left[0]);
-           left.shift();
+        if(orderType){
+            if(left[0] <= right[0]){
+                result.push(left[0]);
+                left.shift();
+             }
+             else{
+                 result.push(right[0]);
+                 right.shift();
+             }
+        }else{
+            if(left[0] >= right[0]){
+                result.push(left[0]);
+                left.shift();
+             }
+             else{
+                 result.push(right[0]);
+                 right.shift();
+             }
         }
-        else{
-            result.push(right[0]);
-            right.shift();
-        }
+        
     }
+
     if(left.length > 0 ){
         result.push(...left);
     }
+
     if(right.length > 0 ){
         result.push(...right);
     }
-    return result;
-}
 
-//Less to More
-function mergeSortA(list){
-    let result = [];
-    let left = [];
-    let right = [];
-    if (list.length <= 1){
-        return list;
-    }
-    else{
-        for(let i = 0;i<Math.floor(list.length/2);i++){
-            left.push(list[i]);
-        }
-        for(let i = Math.floor(list.length/2);i<list.length;i++){
-            right.push(list[i]);
-        }
-        
-        left = mergeSortA(left);
-        right = mergeSortA(right);
-        
-        if(left[left.length - 1] <= right[0]){
-            left.push(...right);
-            return left;
-        }
-        
-        result = mergeA(left,right);
-        
-        return result;
-    }
-}
-
-function mergeA(left,right){
-    let result = [];
-    while(left.length > 0 && right.length > 0){
-        if(left[0] <= right[0]){
-           result.push(left[0]);
-           left.shift();
-        }
-        else{
-            result.push(right[0]);
-            right.shift();
-        }
-    }
-    if(left.length > 0 ){
-        result.push(...left);
-    }
-    if(right.length > 0 ){
-        result.push(...right);
-    }
     return result;
 }

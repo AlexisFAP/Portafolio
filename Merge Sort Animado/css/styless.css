@@ -1,14 +1,26 @@
-body{
-    background: rgb(35, 35, 35);
+html body{
+    background-color: rgb(35, 35, 35);
+    
 }
 
 li{
     outline: none;
 }
 
-button{
-    border-radius: 5%;
-    background: rgb(4, 73, 175);
-    border-color:rgb(1, 33, 82);
-    border-style: none;
+nav{
+    display: none;
+}
+
+#menu-button{
+    background: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 10%;
+}
+
+#list{
+    display: flex;
+    color: white;
+    font-size: 35px;
+    justify-content: center;
 }
