@@ -82,7 +82,6 @@ function snakebody(width, height, x, y) {
         this.x = x;
         this.y = y; 
     }
-       
     this.update = function() {
         ctx = gameContext;
         ctx.fillStyle = "#0000FF";
@@ -172,6 +171,48 @@ function collectApple(){
         listCoordendas.push([[0,0,0,0]]);
         bodySnake.push(new snakebody(snakeSize, snakeSize, 0,  0));
     }
+    
+}
+
+function gameOver(){
+    for(let i=1;i<bodySnake.length;i++){
+        if(bodySnake[0].x==listCoordendas[i][0].split('|')[0] && bodySnake[0].y == listCoordendas[i][0].split('|')[1]){
+            bodySnake = [bodySnake[0]];             
+            bodySnake[0].update = function() {
+                ctx = gameContext;
+                ctx.fillStyle = "#232323";
+                ctx.fillRect(this.x, this.y, this.width, this.height);
+            }
+            myApple.x = -100;
+            myApple.y = -100;
+            listCoordendas = [['a','a','a','a','a','a']];
+            listCoordendas[0][0]=bodySnake[0].x+'|'+bodySnake[0].y;
+            console.log('YOU LOST BUT YOUR SCORE WAS ',score.innerHTML);
+            score.innerHTML = 'OVER';
+            score.style.marginLeft = '5px';
+            document.getElementById("text_score").innerHTML = 'GAME';
+            document.getElementById("text_score").style.marginRight = '5px';
+            document.getElementById("restart").innerHTML = "RESTART?";   
+            document.getElementById("restart").addEventListener('click',restartMetod);
+
+        }
+    }
+}
+
+function restartMetod(){
+    myApple.x = (snakeSize/2) + Math.floor(Math.random() * 19) * snakeSize;
+    myApple.y = (snakeSize/2) + Math.floor(Math.random() * 19) * snakeSize;
+    bodySnake[0].update = function() {
+        ctx = gameContext;
+        ctx.fillStyle = "#0000FF";
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+    score.innerHTML = '0';
+    score.style.marginLeft = '15px';
+    document.getElementById("text_score").innerHTML = 'SCORE';
+    document.getElementById("text_score").style.marginRight = '15px';
+    document.getElementById("restart").innerHTML = "SNAKE V_1.1";
+    document.getElementById("restart").removeEventListener('click',restartMetod);
 }
 
 function updateGameArea() {
@@ -185,6 +226,7 @@ function updateGameArea() {
     collectApple();
     
     updateBody();
+    gameOver();
 }
 
 function move(){
