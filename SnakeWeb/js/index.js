@@ -1,6 +1,8 @@
 let game = document.getElementById('world');
 let gameContext = game.getContext("2d");
 let score = document.getElementById("score");
+let text_score = document.getElementById("text_score");
+let restart = document.getElementById("restart");
 
 let bodySnake = [];
 let velocity = 5;
@@ -199,17 +201,17 @@ function gameOver(){
                 console.log('YOU WIN!!!! YOUR SCORE WAS ',score.innerHTML);
                 score.innerHTML = 'WON '+'SCORE 399';
                 score.style.marginLeft = '5px';
-                document.getElementById("text_score").innerHTML = 'GAME';
-                document.getElementById("text_score").style.marginRight = '5px';
+                text_score.innerHTML = 'GAME';
+                text_score.style.marginRight = '5px';
             }else{
                 console.log('YOU LOST BUT YOUR SCORE WAS ',score.innerHTML);
                 score.innerHTML = 'OVER';
                 score.style.marginLeft = '5px';
-                document.getElementById("text_score").innerHTML = 'GAME';
-                document.getElementById("text_score").style.marginRight = '5px';
+                text_score.innerHTML = 'GAME';
+                text_score.style.marginRight = '5px';
             }
-            document.getElementById("restart").innerHTML = "RESTART";   
-            document.getElementById("restart").addEventListener('click',restartMetod);
+            restart.innerHTML = "RESTART";   
+            restart.addEventListener('click',restartMetod);
         }
     }
 }
@@ -224,10 +226,10 @@ function restartMetod(){
     }
     score.innerHTML = '0';
     score.style.marginLeft = '15px';
-    document.getElementById("text_score").innerHTML = 'SCORE';
-    document.getElementById("text_score").style.marginRight = '15px';
-    document.getElementById("restart").innerHTML = "SNAKE V_1.1";
-    document.getElementById("restart").removeEventListener('click',restartMetod);
+    text_score.innerHTML = 'SCORE';
+    text_score.style.marginRight = '15px';
+    restart.innerHTML = "SNAKE V_1.1";
+    restart.removeEventListener('click',restartMetod);
 }
 
 function updateGameArea() {

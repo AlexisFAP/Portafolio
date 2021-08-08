@@ -4,8 +4,11 @@ body{
 
 #world{
     border: solid 1px white;
-    margin: 35px auto;
+    margin: 5px auto;
     display: flex;
+    width: 40%;
+    height: 40%;
+    margin-top: 30px;
 }
 
 div{
@@ -24,4 +27,53 @@ p{
     color: white;
     margin: 0 15px;
     font-size: 25px;
+}
+
+.text-game{
+    margin-top: 10px;
+}
+
+@media only screen and (min-width: 1250px){
+    .text-game{
+        font-size: 30px;
+    }
+}
+@media only screen and (min-width: 100px) and (max-width: 1250px){
+    .text-game{
+        font-size: 26px;
+    }
+    #world{
+        width: 45%;
+        height: 45%;
+    }
+}
+@media only screen and (min-width: 750px) and (max-width: 1000px){
+    .text-game{
+        font-size: 23px;
+    }#world{
+        width: 50%;
+        height: 50%;
+    }
+}
+@media only screen and (min-width: 500px) and (max-width: 750px) {
+    .text-game{
+        font-size: 23px;
+        margin-top: 15px;
+    }
+    #world{
+        width: 60%;
+        height: 60%;
+        margin-top: 40px;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .text-game{
+        font-size: 17px;
+        margin-top: 20px;
+    }
+    #world{
+        width: 60%;
+        height: 60%;
+        margin-top: 50px;
+    }
 }
