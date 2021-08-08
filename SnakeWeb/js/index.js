@@ -166,17 +166,25 @@ function updateBody(){
 function collectApple(){
     if(bodySnake[0].x == myApple.x - (snakeSize/2) && bodySnake[0].y == myApple.y - (snakeSize/2)){
         score.innerHTML++;
-        myApple.x = (snakeSize/2) + Math.floor(Math.random() * 19) * snakeSize;
-        myApple.y = (snakeSize/2) + Math.floor(Math.random() * 19) * snakeSize;
+        newPossApple();
         listCoordendas.push([[0,0,0,0]]);
         bodySnake.push(new snakebody(snakeSize, snakeSize, 0,  0));
+    } 
+}
+
+function newPossApple(){
+    myApple.x = (snakeSize/2) + Math.floor(Math.random() * 19) * snakeSize;
+    myApple.y = (snakeSize/2) + Math.floor(Math.random() * 19) * snakeSize;
+    for(let i = 0;i<listCoordendas.length;i++){
+        if(Math.abs(bodySnake[i].x-(myApple.x - (snakeSize/2))) <= 12.5 && Math.abs(bodySnake[i].y-(myApple.y - (snakeSize/2)))<=12.5 ){
+            newPossApple();
+        }
     }
-    
 }
 
 function gameOver(){
-    for(let i=1;i<bodySnake.length;i++){
-        if(bodySnake[0].x==listCoordendas[i][0].split('|')[0] && bodySnake[0].y == listCoordendas[i][0].split('|')[1]){
+    for(let i=4;i<bodySnake.length;i++){
+        if(Math.abs(bodySnake[0].x-bodySnake[i].x) <= 15 && Math.abs(bodySnake[0].y-bodySnake[i].y) <= 15){
             bodySnake = [bodySnake[0]];             
             bodySnake[0].update = function() {
                 ctx = gameContext;
@@ -187,14 +195,21 @@ function gameOver(){
             myApple.y = -100;
             listCoordendas = [['a','a','a','a','a','a']];
             listCoordendas[0][0]=bodySnake[0].x+'|'+bodySnake[0].y;
-            console.log('YOU LOST BUT YOUR SCORE WAS ',score.innerHTML);
-            score.innerHTML = 'OVER';
-            score.style.marginLeft = '5px';
-            document.getElementById("text_score").innerHTML = 'GAME';
-            document.getElementById("text_score").style.marginRight = '5px';
-            document.getElementById("restart").innerHTML = "RESTART?";   
+            if(parseInt(score.innerHTML) == 399){
+                console.log('YOU WIN!!!! YOUR SCORE WAS ',score.innerHTML);
+                score.innerHTML = 'WON '+'SCORE 399';
+                score.style.marginLeft = '5px';
+                document.getElementById("text_score").innerHTML = 'GAME';
+                document.getElementById("text_score").style.marginRight = '5px';
+            }else{
+                console.log('YOU LOST BUT YOUR SCORE WAS ',score.innerHTML);
+                score.innerHTML = 'OVER';
+                score.style.marginLeft = '5px';
+                document.getElementById("text_score").innerHTML = 'GAME';
+                document.getElementById("text_score").style.marginRight = '5px';
+            }
+            document.getElementById("restart").innerHTML = "RESTART";   
             document.getElementById("restart").addEventListener('click',restartMetod);
-
         }
     }
 }
