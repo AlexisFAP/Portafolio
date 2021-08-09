@@ -1,0 +1,11 @@
+{
+  "name": "calculadora",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "browser-sync start --server --files 'index.html' 'css/styless.css' 'js/index.js'"
+  },
+  "author": "AlexisPA",
+  "license": "ISC"
+}
